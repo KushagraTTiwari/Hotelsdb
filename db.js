@@ -6,7 +6,11 @@ require('dotenv').config();
 const mongoURL = process.env.MONGODB_URL
 
 //Set up mongoDB connection
-mongoose.connect(mongoURL)
+mongoose.connect(mongoURL, {
+    ssl: true,
+    tls: true,
+    tlsInsecure: true, // Use this only for testing; not recommended for production
+  })
 //, {useNewUrlParser: true, useUnifiedTopology: true} no need to use these topology in new version.
 
 

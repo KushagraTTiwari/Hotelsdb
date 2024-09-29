@@ -35,6 +35,5 @@ app.use('/menuitems', menuRoutes)
 
 
 app.listen(PORT,()=>{
-    console.log('server is active')
-    console.log('listening at 3000')
+    console.log(`server listing at port ${PORT}`)
 });

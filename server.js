@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const db = require('./db')
 require('dotenv').config();
+const passport = require('./auth')
+// const LocalStrategy = require('passport-local').Strategy;
 
 // const Person = require('./models/person')
 // const MenuItem = require('./models/MenuItem')
@@ -18,6 +20,9 @@ const logRequest = (req, res, next) => {
 }
 app.use(logRequest)
 
+app.use(passport.initialize());
+const localAuthMiddleware = passport.authenticate('local', {session: false})
+
 
 app.get('/', function(req, res){
     res.send('welcome to my hotel....How can i help you?')
@@ -31,7 +36,7 @@ const menuRoutes = require('./routes/menuRoutes')
 
 //use the routers
 app.use('/person', personRoutes)
-app.use('/menuitems', menuRoutes)
+app.use('/menuitems', localAuthMiddleware, menuRoutes)
 
 
 app.listen(PORT,()=>{

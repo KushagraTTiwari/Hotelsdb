@@ -3,15 +3,11 @@ require('dotenv').config();
 
 //Define the MongoDB connection url
 // const mongoURL = 'mongodb://127.0.0.1:27017/hotels'
-const mongoURL = process.env.MONGODB_URL
+const mongoURL = process.env.MONGODB_URL_LOCAL
 console.log('this is url:- ',mongoURL)
 
 //Set up mongoDB connection
-mongoose.connect(mongoURL, {
-    ssl: true,
-    tls: true,
-    tlsInsecure: true, // Use this only for testing; not recommended for production
-  })
+mongoose.connect(mongoURL)
 //, {useNewUrlParser: true, useUnifiedTopology: true} no need to use these topology in new version.
 
 

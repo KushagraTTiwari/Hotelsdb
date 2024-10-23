@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const personSchema = new mongoose.Schema({
     name:{
@@ -63,11 +64,11 @@ personSchema.pre('save', async function(next){
 
 personSchema.methods.comparePassword = async function (candidatePassword){
     try {
-        //Use b
+        //Use bcrypt to compare the provided password with the hashed password
         const isMatch = await bcrypt.compare(candidatePassword, this.password);
         return isMatch;
     } catch (error) {
-        return error;
+        throw error;
     }
 }
 

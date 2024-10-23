@@ -4,4 +4,6 @@ node_modules/
 #Other entries........
 .env
 
+check.js
+
 package-lock.json
